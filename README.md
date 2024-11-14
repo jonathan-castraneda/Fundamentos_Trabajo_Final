@@ -13,3 +13,11 @@ Este repositorio contiene el script SQL para crear la base de datos **gestion_tr
 3. Ejecuta el comando en la terminal:
    ```bash
    sudo mysql -u root -p < gestion_transporte.sql
+
+
+## Ejecutar este comando antes de levantar la API
+   pip install fastapi uvicorn sqlalchemy pymysql
+
+## Comando para levantar la API
+   uvicorn main:app --reload
+   NOTA: se debe estar dentro de la carpeta gestion_transporte_crud}
