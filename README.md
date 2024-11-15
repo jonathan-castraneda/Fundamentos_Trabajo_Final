@@ -32,4 +32,4 @@ Este repositorio contiene el script SQL para crear la base de datos **gestion_tr
 
    ## Comando para levantar la API
    uvicorn crud_2.main:app --reload
-   NOTA: se debe estar dentro de la carpeta principal 'Fundamentos_Trabajo_Final'
+   NOTA: se debe estar dentro de la carpeta principal 'Fundamentos_Trabajo_Final' 
