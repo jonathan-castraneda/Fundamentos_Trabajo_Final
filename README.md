@@ -21,3 +21,15 @@ Este repositorio contiene el script SQL para crear la base de datos **gestion_tr
 ## Comando para levantar la API
    uvicorn main:app --reload
    NOTA: se debe estar dentro de la carpeta gestion_transporte_crud}
+
+////////////USANDO LA CARPETA Crud_2
+## Ejecutar este comando antes de levantar la API
+   pip install fastapi uvicorn sqlalchemy pymysql
+   pip install passlib
+   pip install sqlalchemy pymysql
+   pip install fastapi uvicorn
+   pip install bcrypt
+
+   ## Comando para levantar la API
+   uvicorn crud_2.main:app --reload
+   NOTA: se debe estar dentro de la carpeta principal 'Fundamentos_Trabajo_Final'

@@ -26,6 +26,8 @@ def get_db():
     finally:
         db.close()
 
+
+
 @app.post("/bitacora/", response_model=schemas.Bitacora)
 def create_bitacora(bitacora: schemas.BitacoraCreate, db: Session = Depends(get_db)):
     return crud.create_bitacora(db=db, bitacora=bitacora)
