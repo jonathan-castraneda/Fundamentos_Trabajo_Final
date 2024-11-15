@@ -4,6 +4,9 @@ from crud_2 import models, schemas, crud
 from crud_2.database import SessionLocal, engine
 from typing import List
 
+import os
+import uvicorn
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
@@ -170,3 +173,9 @@ def delete_proyecto(proyecto_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Proyecto not found")
     return db_proyecto
 
+
+
+# Agrega esta parte para ejecutar el servidor
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))  # Usa el puerto de Render si está disponible, o 8000 como valor por defecto
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
