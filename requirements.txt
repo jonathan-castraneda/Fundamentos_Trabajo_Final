@@ -1,6 +1,7 @@
+
 fastapi
-uvicorn
+uvicorn[standard]
 sqlalchemy
-pydantic
+pymysql
 passlib[bcrypt]
-psycopg2-binary
+bcrypt

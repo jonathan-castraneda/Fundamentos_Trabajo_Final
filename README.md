@@ -20,7 +20,7 @@ Este repositorio contiene el script SQL para crear la base de datos **gestion_tr
 
 ## Comando para levantar la API
    uvicorn main:app --reload
-   NOTA: se debe estar dentro de la carpeta gestion_transporte_crud}
+   NOTA: se debe estar dentro de la carpeta gestion_transporte_crud
 
 ////////////USANDO LA CARPETA Crud_2
 ## Ejecutar este comando antes de levantar la API
