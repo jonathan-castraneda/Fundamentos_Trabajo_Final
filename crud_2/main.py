@@ -4,16 +4,32 @@ from crud_2 import models, schemas, crud
 from crud_2.database import SessionLocal, engine
 from typing import List
 
+
+
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-def get_db():
+# Dependencia para obtener la sesión de la base de datos 
+def get_db(): 
+    db = SessionLocal() 
+    try: 
+        yield db 
+    finally: 
+        db.close()
+
+@app.get("/")
+def read_root():
+    return {"Hello": "World"}
+
+
+
     db = SessionLocal()
     try:
         yield db
     finally:
         db.close()
+
 
 # Rutas para Usuario
 @app.post("/usuarios/", response_model=schemas.Usuario)
@@ -170,3 +186,6 @@ def delete_proyecto(proyecto_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="Proyecto not found")
     return db_proyecto
 
+if __name__ == "__main__": 
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)

@@ -29,7 +29,7 @@ Este repositorio contiene el script SQL para crear la base de datos **gestion_tr
    pip install sqlalchemy pymysql
    pip install fastapi uvicorn
    pip install bcrypt
-
+   pip install psycopg2-binary
    ## Comando para levantar la API
    uvicorn crud_2.main:app --reload
    NOTA: se debe estar dentro de la carpeta principal 'Fundamentos_Trabajo_Final' 
