@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 import models, schemas
 from passlib.context import CryptContext
+from models import Usuario
 
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -47,7 +48,8 @@ def delete_usuario(db: Session, usuario_id: int):
         db.commit()
     return db_usuario
 
-
+def get_user_by_username(db: Session, username: str):
+    return db.query(models.Usuario).filter(models.Usuario.username == username).first()
 
 
 

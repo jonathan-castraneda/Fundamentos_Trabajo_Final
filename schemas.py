@@ -16,6 +16,10 @@ class UsuarioUpdate(UsuarioBase):
     id_rol: Optional[int] = None
     activo: Optional[int] = None
 
+class UserLogin(BaseModel):
+    username: str
+    password: str
+
 class Usuario(UsuarioBase):
     id_usr: int
     id_rol: int

@@ -40,6 +40,13 @@ def update_usuario(usuario_id: int, usuario: schemas.UsuarioUpdate, db: Session 
 def delete_usuario(usuario_id: int, db: Session = Depends(get_db)):
     return crud.delete_usuario(db=db, usuario_id=usuario_id)
 
+@app.post("/login")
+def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
+    db_user = crud.get_user_by_username(db, username=user.username)
+    if db_user and db_user.password == user.password:
+        return {"message": "Login successful"}
+    raise HTTPException(status_code=400, detail="Invalid credentials")
+
 
 # Endpoints para Rol
 @app.post("/roles/", response_model=schemas.Rol)
