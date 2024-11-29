@@ -146,8 +146,3 @@ class Vehiculo(VehiculoBase):
 
     class Config:
         orm_mode = True
-
-
-
-
-
