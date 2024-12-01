@@ -3,10 +3,26 @@ from sqlalchemy.orm import Session
 from typing import List
 import models, schemas, crud
 from database import engine, SessionLocal
+from fastapi.middleware.cors import CORSMiddleware
 
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
+
+# Configuración de CORS
+origins = [
+    "http://localhost",
+    "http://localhost:8000",
+    "http://localhost:1234"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 def get_db():
     db = SessionLocal()
@@ -36,6 +52,7 @@ def read_usuarios(skip: int = 0, limit: int = 10, db: Session = Depends(get_db))
 def update_usuario(usuario_id: int, usuario: schemas.UsuarioUpdate, db: Session = Depends(get_db)):
     return crud.update_usuario(db=db, usuario_id=usuario_id, usuario=usuario)
 
+
 @app.delete("/usuarios/{usuario_id}", response_model=schemas.Usuario)
 def delete_usuario(usuario_id: int, db: Session = Depends(get_db)):
     return crud.delete_usuario(db=db, usuario_id=usuario_id)
@@ -46,6 +63,10 @@ def login(user: schemas.UserLogin, db: Session = Depends(get_db)):
     if db_user and db_user.password == user.password:
         return {"message": "Login successful"}
     raise HTTPException(status_code=400, detail="Invalid credentials")
+
+@app.options("/login")
+def options_login():
+    return {"Allow": "POST, OPTIONS"}
 
 
 # Endpoints para Rol

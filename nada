@@ -1,9 +1,22 @@
-from sqlalchemy import Column, Integer, String
-from .database import Base
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 
-class User(Base):
-    __tablename__ = "users"
+app = FastAPI()
 
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True)
-    password = Column(String)
+origins = [
+    "http://127.0.0.1:8000",
+    "http://localhost",
+    # Agrega aquí otros orígenes permitidos
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+@app.delete("/usuarios/{usuario_id}", response_model=schemas.Usuario)
+def delete_usuario(usuario_id: int, db: Session = Depends(get_db)):
+    return crud.delete_usuario(db=db, usuario_id=usuario_id)

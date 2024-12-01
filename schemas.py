@@ -7,14 +7,15 @@ class UsuarioBase(BaseModel):
     username: Optional[str] = None
     id_rol: Optional[int] = None
     activo: Optional[int] = None
+    eliminado: Optional[bool] = None
 
 class UsuarioCreate(UsuarioBase):
     password: str
 
 class UsuarioUpdate(UsuarioBase):
-    password: Optional[str] = None
     id_rol: Optional[int] = None
     activo: Optional[int] = None
+    eliminado: Optional[bool] = None
 
 class UserLogin(BaseModel):
     username: str
@@ -24,6 +25,7 @@ class Usuario(UsuarioBase):
     id_usr: int
     id_rol: int
     activo: Optional[int] = None
+    eliminado: Optional[bool] = None
 
     class Config:
         orm_mode = True

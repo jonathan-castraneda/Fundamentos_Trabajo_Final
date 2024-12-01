@@ -13,6 +13,7 @@ class Usuario(Base):
     password = Column(Text)
     id_rol = Column(Integer, ForeignKey('rol.id_rol'))
     activo = Column(Integer)
+    eliminado = Column(Integer)
     username = Column(Text)
     rol = relationship("Rol")
 
