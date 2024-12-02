@@ -20,7 +20,7 @@ def create_usuario(db: Session, usuario: schemas.UsuarioCreate):
         id_rol=usuario.id_rol,
         activo=usuario.activo,
         username=usuario.username,
-        elimnado=usuario.eliminado,
+        eliminado=usuario.eliminado,
     )
     db.add(db_usuario)
     db.commit()

@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, ForeignKey, Text, Float, TIMESTAMP
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Text, Float, TIMESTAMP
 from sqlalchemy.orm import relationship
 from database import Base
 import datetime
@@ -13,8 +13,8 @@ class Usuario(Base):
     password = Column(Text)
     id_rol = Column(Integer, ForeignKey('rol.id_rol'))
     activo = Column(Integer)
-    eliminado = Column(Integer)
     username = Column(Text)
+    eliminado = Column(Boolean, default=False)
     rol = relationship("Rol")
 
 class Rol(Base):
