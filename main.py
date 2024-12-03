@@ -14,7 +14,7 @@ origins = [
     "http://localhost",
     "http://localhost:8000",
     "http://localhost:1234",
-    "https://gestion-transporte.netlify.app/"
+    "https://gestion-transporte.netlify.app"
 ]
 
 app.add_middleware(
